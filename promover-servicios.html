@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Promover Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lookaaru</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#contactenos">Contáctenos</a></li>
+                    <li><a href="#" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="#" id="cartBtn">Carrito <span id="cartCount">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Promover Sus Servicios</h2>
+        <div id="service-navigation"></div>
+        <section id="promote-service-section">
+            <p>¿Es usted un proveedor de servicios relacionados con el fin de vida? Promueva sus servicios a través de nuestra plataforma y llegue a más clientes potenciales.</p>
+            
+            <form id="promote-service-form">
+                <div class="form-group">
+                    <label for="company-name">Nombre de la empresa:</label>
+                    <input type="text" id="company-name" name="company-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-type">Tipo de servicio:</label>
+                    <select id="service-type" name="service-type" required>
+                        <option value="">Seleccione un tipo de servicio</option>
+                        <option value="funeraria">Funeraria</option>
+                        <option value="crematorio">Crematorio</option>
+                        <option value="floreria">Florería</option>
+                        <option value="transporte">Transporte fúnebre</option>
+                        <option value="legal">Servicios legales</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service-description">Descripción del servicio:</label>
+                    <textarea id="service-description" name="service-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email de contacto:</label>
+                    <input type="email" id="contact-email" name="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Teléfono de contacto:</label>
+                    <input type="tel" id="contact-phone" name="contact-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-area">Área de servicio:</label>
+                    <input type="text" id="service-area" name="service-area" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-image">Imagen del servicio (opcional):</label>
+                    <input type="file" id="service-image" name="service-image" accept="image/*">
+                </div>
+                <button type="submit" class="btn-primary">Enviar solicitud de promoción</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lookaaru. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de inicio de sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="login-email" class="sr-only">Correo electrónico</label>
+                <input type="email" id="login-email" placeholder="Correo electrónico" required>
+                <label for="login-password" class="sr-only">Contraseña</label>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes una cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <!-- Modal de registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registro</h2>
+            <form id="register-form">
+                <label for="register-name" class="sr-only">Nombre</label>
+                <input type="text" id="register-name" placeholder="Nombre" required>
+                <label for="register-email" class="sr-only">Correo electrónico</label>
+                <input type="email" id="register-email" placeholder="Correo electrónico" required>
+                <label for="register-password" class="sr-only">Contraseña</label>
+                <input type="password" id="register-password" placeholder="Contraseña" required>
+                <label for="register-confirm-password" class="sr-only">Confirmar contraseña</label>
+                <input type="password" id="register-confirm-password" placeholder="Confirmar contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal del carrito -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div id="cartItems"></div>
+            <p>Total: $<span id="cartTotal">0</span></p>
+            <button id="checkoutBtn">Proceder al pago</button>
+        </div>
+    </div>
+
+    <script type="module" src="cart.js"></script>
+    <script type="module" src="navigation.js"></script>
+    <script type="module" src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const promoteServiceForm = document.getElementById('promote-service-form');
+            promoteServiceForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Aquí iría la lógica para procesar la solicitud de promoción
+                alert('Su solicitud de promoción ha sido enviada. Nos pondremos en contacto con usted pronto.');
+            });
+        });
+    </script>
+</body>
+</html>

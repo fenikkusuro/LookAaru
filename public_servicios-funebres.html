@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Servicios Fúnebres</title>
+    <link rel="stylesheet" href="/public_css_styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lookaaru</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="/#servicios">Servicios</a></li>
+                    <li><a href="/#promociones">Promociones</a></li>
+                    <li><a href="/#contactenos">Contáctenos</a></li>
+                    <li><a href="#" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="#" id="cartBtn">Carrito <span id="cartCount">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Servicios Fúnebres</h2>
+        <p>Ofrecemos servicios fúnebres completos y personalizados para honrar la memoria de sus seres queridos.</p>
+        
+        <h3>Nuestros Servicios</h3>
+        <ul>
+            <li>Preparación y embalsamamiento</li>
+            <li>Velatorios</li>
+            <li>Ceremonias religiosas o laicas</li>
+            <li>Cremación</li>
+            <li>Entierro tradicional</li>
+        </ul>
+
+        <h3>Paquetes de Servicios</h3>
+        <div class="pricing-options">
+            <div class="pricing-option">
+                <h4>Paquete Básico</h4>
+                <p class="price">$2,500</p>
+                <ul>
+                    <li>Ataúd estándar</li>
+                    <li>Preparación básica del cuerpo</li>
+                    <li>Velatorio de 4 horas</li>
+                    <li>Traslado local</li>
+                </ul>
+                <button class="add-to-cart" data-id="funebre-basico" data-name="Servicio Fúnebre Básico" data-price="2500">Agregar al carrito</button>
+            </div>
+            <div class="pricing-option">
+                <h4>Paquete Premium</h4>
+                <p class="price">$5,000</p>
+                <ul>
+                    <li>Ataúd de lujo</li>
+                    <li>Embalsamamiento completo</li>
+                    <li>Velatorio de 24 horas</li>
+                    <li>Ceremonia religiosa o laica</li>
+                    <li>Traslado y cortejo fúnebre</li>
+                    <li>Arreglos florales</li>
+                </ul>
+                <button class="add-to-cart" data-id="funebre-premium" data-name="Servicio Fúnebre Premium" data-price="5000">Agregar al carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lookaaru. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modales (login, registro) -->
+    <div id="loginModal" class="modal">
+        <!-- ... (contenido del modal de inicio de sesión) ... -->
+    </div>
+
+    <div id="registerModal" class="modal">
+        <!-- ... (contenido del modal de registro) ... -->
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

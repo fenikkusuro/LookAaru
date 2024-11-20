@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Servicios Funerarios</title>
+    <link rel="stylesheet" href="/public_css_styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lookaaru</h1>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#promociones">Promociones</a></li>
+                    <li><a href="#contactenos">Contáctenos</a></li>
+                    <li><a href="#" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="#" id="cartBtn">Carrito <span id="cartCount">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="container">
+            <h2>Bienvenidos a Lookaaru</h2>
+            <p>Ofrecemos servicios funerarios integrales con compasión y profesionalismo.</p>
+        </section>
+
+        <section id="quienes-somos" class="container">
+            <h2>Quiénes Somos</h2>
+            <p>Somos una empresa dedicada a brindar apoyo y servicios de calidad en los momentos más difíciles.</p>
+        </section>
+
+        <section id="servicios" class="container">
+            <h2>Nuestros Servicios</h2>
+            <ul id="service-list">
+                <li><a href="/public_servicios-funebres.html">Servicios Fúnebres</a></li>
+                <li><a href="/services/services_servicios-medicos.html">Servicios Médicos</a></li>
+                <li><a href="/services/services_cementerios-cinerarios.html">Cementerios y Cinerarios</a></li>
+                <li><a href="/services/services_urnas.html">Urnas</a></li>
+                <li><a href="/services/services_tramites-legales.html">Trámites Legales</a></li>
+                <li><a href="/services/services_avisos-periodico.html">Avisos en Periódico</a></li>
+                <li><a href="/services/services_traslados.html">Traslados</a></li>
+                <li><a href="/services/services_floreria.html">Florería</a></li>
+                <li><a href="/services/services_crear-video-despedida.html">Crear Video de Despedida</a></li>
+            </ul>
+        </section>
+
+        <section id="promociones" class="container">
+            <h2>Promociones</h2>
+            <div id="promotions-container">
+                <!-- Las promociones se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+
+        <section id="contactenos" class="container">
+            <h2>Contáctenos</h2>
+            <form id="contact-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lookaaru. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="login-email">Correo electrónico</label>
+                <input type="email" id="login-email" required>
+                <label for="login-password">Contraseña</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes una cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registro</h2>
+            <form id="register-form">
+                <label for="register-name">Nombre</label>
+                <input type="text" id="register-name" required>
+                <label for="register-email">Correo electrónico</label>
+                <input type="email" id="register-email" required>
+                <label for="register-password">Contraseña</label>
+                <input type="password" id="register-password" required>
+                <label for="register-confirm-password">Confirmar contraseña</label>
+                <input type="password" id="register-confirm-password" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

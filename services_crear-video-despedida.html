@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Crear Video de Despedida</title>
+    <link rel="stylesheet" href="/public_css_styles.css">
+    <style>
+        .video-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .video-form label {
+            display: block;
+            margin-top: 15px;
+        }
+        .video-form input[type="text"],
+        .video-form input[type="file"],
+        .video-form input[type="email"],
+        .video-form input[type="date"],
+        .video-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .video-form button {
+            margin-top: 20px;
+        }
+        #videoPreview {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+        .contact-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .contact-list li {
+            margin-bottom: 10px;
+        }
+        .remove-contact {
+            margin-left: 10px;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lookaaru</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="/#servicios">Servicios</a></li>
+                    <li><a href="/#promociones">Promociones</a></li>
+                    <li><a href="/#contactenos">Contáctenos</a></li>
+                    <li><a href="#" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="#" id="cartBtn">Carrito <span id="cartCount">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Crear Video de Despedida</h2>
+        <p>Cree un video de despedida personalizado para compartir con sus seres queridos.</p>
+        
+        <div class="video-form">
+            <form id="videoForm">
+                <label for="name">Nombre de la persona:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="birthDate">Fecha de nacimiento:</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+
+                <label for="deathDate">Fecha de fallecimiento (opcional):</label>
+                <input type="date" id="deathDate" name="deathDate">
+
+                <label for="videos">Subir videos (mínimo 2):</label>
+                <input type="file" id="videos" name="videos" accept="video/*" multiple required>
+                <div id="videoList"></div>
+
+                <label for="contactName">Nombre del contacto:</label>
+                <input type="text" id="contactName" name="contactName">
+
+                <label for="contactEmail">Email del contacto:</label>
+                <input type="email" id="contactEmail" name="contactEmail">
+
+                <button type="button" id="addContact">Agregar Contacto</button>
+
+                <ul id="contactList" class="contact-list"></ul>
+
+                <label for="message">Mensaje personalizado:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <button type="submit">Crear Video</button>
+            </form>
+        </div>
+
+        <div id="videoPreview" style="display: none;">
+            <h3>Vista previa del video</h3>
+            <video id="previewPlayer" controls>
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lookaaru. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modales (login, registro) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="login-email">Correo electrónico</label>
+                <input type="email" id="login-email" required>
+                <label for="login-password">Contraseña</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes una cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registro</h2>
+            <form id="register-form">
+                <label for="register-name">Nombre</label>
+                <input type="text" id="register-name" required>
+                <label for="register-email">Correo electrónico</label>
+                <input type="email" id="register-email" required>
+                <label for="register-password">Contraseña</label>
+                <input type="password" id="register-password" required>
+                <label for="register-confirm-password">Confirmar contraseña</label>
+                <input type="password" id="register-confirm-password" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoForm = document.getElementById('videoForm');
+            const videoPreview = document.getElementById('videoPreview');
+            const previewPlayer = document.getElementById('previewPlayer');
+            const addContactBtn = document.getElementById('addContact');
+            const contactList = document.getElementById('contactList');
+            const videosInput = document.getElementById('videos');
+            const videoList = document.getElementById('videoList');
+
+            let contacts = [];
+
+            addContactBtn.addEventListener('click', () => {
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                if (name && email) {
+                    contacts.push({ name, email });
+                    updateContactList();
+                    document.getElementById('contactName').value = '';
+                    document.getElementById('contactEmail').value = '';
+                } else {
+                    alert('Por favor, ingrese nombre y email del contacto.');
+                }
+            });
+
+            function updateContactList() {
+                contactList.innerHTML = contacts.map((contact, index) => `
+                    <li>
+                        ${contact.name} (${contact.email})
+                        <span class="remove-contact" data-index="${index}">Eliminar</span>
+                    </li>
+                `).join('');
+            }
+
+            contactList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-contact')) {
+                    const index = parseInt(e.target.dataset.index);
+                    contacts.splice(index, 1);
+                    updateContactList();
+                }
+            });
+
+            videosInput.addEventListener('change', () => {
+                const files = videosInput.files;
+                videoList.innerHTML = Array.from(files).map(file => `
+                    <p>${file.name}</p>
+                `).join('');
+            });
+
+            videoForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (videosInput.files.length < 2) {
+                    alert('Por favor, suba al menos 2 videos.');
+                    return;
+                }
+
+                if (contacts.length === 0) {
+                    alert('Por favor, agregue al menos un contacto.');
+                    return;
+                }
+
+                // Aquí iría la lógica para procesar el formulario y crear el video
+                // Por ahora, simularemos la creación del video con un retraso
+
+                alert('Creando el video de despedida. Por favor, espere...');
+
+                // Simular el proceso de creación del video
+                setTimeout(() => {
+                    // En un caso real, aquí se generaría el video y se obtendría la URL
+                    const fakeVideoUrl = '/path/to/fake/video.mp4';
+                    
+                    previewPlayer.src = fakeVideoUrl;
+                    videoPreview.style.display = 'block';
+                    videoPreview.scrollIntoView({ behavior: 'smooth' });
+
+                    addToCart({
+                        id: 'video-despedida',
+                        name: 'Video de Despedida Personalizado',
+                        price: 99.99
+                    });
+
+                    alert('El video de despedida ha sido creado y añadido al carrito. Se notificará a los contactos cuando esté listo para ser compartido.');
+                }, 3000);
+            });
+        });
+
+        function addToCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Inicializar el contador del carrito al cargar la página
+        updateCartCount();
+    </script>
+</body>
+</html>

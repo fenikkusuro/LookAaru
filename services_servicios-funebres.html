@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Servicios Fúnebres</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <!-- Header content remains the same -->
+    </header>
+
+    <main class="container">
+        <h2>Servicios Fúnebres</h2>
+        
+        <section>
+            <!-- Existing content remains the same -->
+
+            <h3>Notificación a Familiares</h3>
+            <form id="notification-form">
+                <label for="relative-name">Nombre del familiar fallecido:</label>
+                <input type="text" id="relative-name" required>
+
+                <label for="relative-phone">Número de WhatsApp del familiar a notificar:</label>
+                <input type="tel" id="relative-phone" required>
+
+                <button type="submit">Enviar Notificación por WhatsApp</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer content remains the same -->
+    </footer>
+
+    <!-- Existing modals remain the same -->
+
+    <script type="module" src="../cart.js"></script>
+    <script type="module" src="../navigation.js"></script>
+    <script type="module" src="../script.js"></script>
+    <script>
+        document.getElementById('notification-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const relativeName = document.getElementById('relative-name').value;
+            const relativePhone = document.getElementById('relative-phone').value;
+
+            const message = `Estimado familiar, lamentamos informarle que ${relativeName} ha fallecido. Por favor, póngase en contacto con Lookaaru para obtener más información y asistencia en estos momentos difíciles.`;
+
+            try {
+                const response = await fetch('/api/notifications/send-whatsapp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phoneNumber: relativePhone, message }),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Notificación enviada con éxito por WhatsApp.');
+                } else {
+                    alert('Error al enviar la notificación. Por favor, intente nuevamente.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al enviar la notificación. Por favor, intente nuevamente.');
+            }
+        });
+    </script>
+</body>
+</html>

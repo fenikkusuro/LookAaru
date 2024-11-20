@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookaaru - Florería</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Lookaaru</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../index.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="../index.html#servicios">Servicios</a></li>
+                    <li><a href="../index.html#contactenos">Contáctenos</a></li>
+                    <li><a href="#" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="#" id="cartBtn">Carrito <span id="cartCount">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Florería</h2>
+        
+        <div id="recommendations"></div>
+        <section>
+            <p>Ofrecemos una amplia variedad de arreglos florales para expresar sus condolencias y honrar la memoria de sus seres queridos.</p>
+            
+            <h3>Nuestros Servicios</h3>
+            <ul>
+                <li>Coronas fúnebres</li>
+                <li>Centros de mesa</li>
+                <li>Ramos de condolencias</li>
+                <li>Arreglos personalizados</li>
+                <li>Entrega a domicilio y a funerarias</li>
+            </ul>
+
+            <h3>Arreglos Destacados</h3>
+            <div class="pricing-options">
+                <div class="pricing-option">
+                    <h4>Corona Clásica</h4>
+                    <p class="price">$200</p>
+                    <ul>
+                        <li>Rosas blancas y lirios</li>
+                        <li>Cinta con mensaje personalizado</li>
+                        <li>Tamaño mediano (90 cm de diámetro)</li>
+                    </ul>
+                    <button class="add-to-cart" data-id="corona-clasica" data-name="Corona Clásica" data-price="200">Agregar al carrito</button>
+                </div>
+                <div class="pricing-option">
+                    <h4>Ramo de Condolencias</h4>
+                    <p class="price">$150</p>
+                    <ul>
+                        <li>Variedad de flores blancas y verdes</li>
+                        <li>Presentación elegante</li>
+                        <li>Tarjeta con mensaje personalizado</li>
+                    </ul>
+                    <button class="add-to-cart" data-id="ramo-condolencias" data-name="Ramo de Condolencias" data-price="150">Agregar al carrito</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Lookaaru. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de inicio de sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="login-email" class="sr-only">Correo electrónico</label>
+                <input type="email" id="login-email" placeholder="Correo electrónico" required>
+                <label for="login-password" class="sr-only">Contraseña</label>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes una cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <!-- Modal de registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registro</h2>
+            <form id="register-form">
+                <label for="register-name" class="sr-only">Nombre</label>
+                <input type="text" id="register-name" placeholder="Nombre" required>
+                <label for="register-email" class="sr-only">Correo electrónico</label>
+                <input type="email" id="register-email" placeholder="Correo electrónico" required>
+                <label for="register-password" class="sr-only">Contraseña</label>
+                <input type="password" id="register-password" placeholder="Contraseña" required>
+                <label for="register-confirm-password" class="sr-only">Confirmar contraseña</label>
+                <input type="password" id="register-confirm-password" placeholder="Confirmar contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal del carrito -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div id="cartItems"></div>
+            <p>Total: $<span id="cartTotal">0</span></p>
+            <button id="checkoutBtn">Proceder al pago</button>
+        </div>
+    </div>
+
+    <script type="module" src="../cart.js"></script>
+    <script type="module" src="../navigation.js"></script>
+    <script type="module" src="../script.js"></script>
+</body>
+</html>
